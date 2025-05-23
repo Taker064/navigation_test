@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'navigator_test = navigator_test_pkg.navigator_test:main'
+            'navigator_test = navigator_test_pkg.navigator_test:main',
+            'send_coordinate = navigator_test_pkg.send_coordinate:main',
         ],
     },
 )
