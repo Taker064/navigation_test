@@ -8,10 +8,7 @@ class Send_Coordinate(Node):
 
 
 
-        # Publisherの作成
-        # トピック名 /getmetorypose はユーザー指定に従っています。
-        # 通常、データを「送信する」Publisherのトピック名に 'get' はあまり使われませんが、
-        # ここでは指定通りとします。
+        # Publisherの作成。
         self.publisher_ = self.create_publisher(
             PoseStamped,
             "/goal_pose",  # 送信先のトピック名
@@ -30,9 +27,9 @@ class Send_Coordinate(Node):
 
         # ヘッダー情報の設定
         msg.header.stamp = self.get_clock().now().to_msg() # 現在時刻
-        msg.header.frame_id = 'map'  # 座標系のフレームID 変更
+        msg.header.frame_id = 'map'  # 座標系のフレームID 変更.mapだと絶対座標,base_linkだと相対座標になる。
 
-        # 座標データの設定 
+        # 座標データの設定 (単位はmなので注意)
         msg.pose.position.x = 1.0 + float(self.counter)
         msg.pose.position.y = 2.0
         msg.pose.position.z = 0.0

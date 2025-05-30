@@ -3,6 +3,7 @@ from rclpy.action import ActionClient #action通信のClient側で呼び出す
 from rclpy.node import Node #ros2_pythonでは必須
 from geometry_msgs.msg import PoseStamped #nav2座標系用のやつ
 from nav2_msgs.action import NavigateToPose #Actionファイルのインポート
+from std_msgs.msg import String
 
 class NavigatorTest(Node):
     
@@ -16,6 +17,11 @@ class NavigatorTest(Node):
             PoseStamped,
             "/goal_pose",
             self.goal_pose_callback,
+            10
+        )
+        self.pub = self.create_publisher(
+            String,
+            "/result_nav",  # 送信先のトピック名
             10
         )
         self.subscription #宣言されていない変数関連で警告を吐かれるのを防ぐ処理
@@ -61,15 +67,20 @@ class NavigatorTest(Node):
     
     def get_result_callback(self, future):
         """
-        アクションの最終結果を処理するコールバック関す
+        アクションの最終結果を処理するコールバック関数
         """
         result = future.result().result # resultの中身は NavigateToPose.Result 型 (例: nav2_msgs/action/NavigateToPose.action を参照)
+        result_msg = String() # 通知用メッセージ
         self.get_logger().info(f"Result:{result}")
         status = future.result().status
         if status == rclpy.action.GoalStatus.STATUS_SUCCEEDED:
             self.get_logger().info("Goal成功")
+            #Goalに到達したら初期位置に戻る処理
+            result_msg.data = "SUCCEEDED"
         else:
             self.get_logger().info(f'Goal失敗 ステータスは: {status}')
+            result_msg.data = "FAILED_STATUS"
+        self.pub.publish(result_msg)
 
     def feedback_callback(self, feedback_msg):
         """
