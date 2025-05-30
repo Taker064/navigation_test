@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'navigator_test = navigator_test_pkg.navigator_test:main',
+            'navigator_state = navigator_test_pkg.navigator_test_state:main',
             'send_coordinate = navigator_test_pkg.send_coordinate:main',
             'room_coordinate = navigator_test_pkg.room_coordinate:main',
         ],
