@@ -49,6 +49,47 @@ class Room_Coordinate(Node):
             msg.pose.orientation.y = 0.0
             msg.pose.orientation.z = 0.0
             msg.pose.orientation.w = 1.0  # クォータニオン (w=1は回転なし)
+        elif roomname == "room3":
+            msg.pose.position.x = 2.0
+            msg.pose.position.y = 7.0
+            msg.pose.position.z = 8.0
+
+            # 姿勢データの設定 
+            msg.pose.orientation.x = 0.0
+            msg.pose.orientation.y = 0.0
+            msg.pose.orientation.z = 0.0
+            msg.pose.orientation.w = 1.0
+        elif roomname == "room4":
+            msg.pose.position.x = 2.0
+            msg.pose.position.y = 7.0
+            msg.pose.position.z = 8.0
+
+            # 姿勢データの設定 
+            msg.pose.orientation.x = 0.0
+            msg.pose.orientation.y = 0.0
+            msg.pose.orientation.z = 0.0
+            msg.pose.orientation.w = 1.0
+        elif roomname == "room5":
+            msg.pose.position.x = 2.0
+            msg.pose.position.y = 7.0
+            msg.pose.position.z = 8.0
+
+            # 姿勢データの設定 
+            msg.pose.orientation.x = 0.0
+            msg.pose.orientation.y = 0.0
+            msg.pose.orientation.z = 0.0
+            msg.pose.orientation.w = 1.0
+        elif roomname == "room6":
+            msg.pose.position.x = 2.0
+            msg.pose.position.y = 7.0
+            msg.pose.position.z = 8.0
+
+            # 姿勢データの設定 
+            msg.pose.orientation.x = 0.0
+            msg.pose.orientation.y = 0.0
+            msg.pose.orientation.z = 0.0
+            msg.pose.orientation.w = 1.0
+
         else:
             self.get_logger().info("Not found this room_name")
             return
