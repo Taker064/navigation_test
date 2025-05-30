@@ -5,7 +5,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped
 from nav2_msgs.action import NavigateToPose
 # GoalStatus をインポートしてステータスコードを比較できるようにする
-from rclpy.action import GoalStatus
+from action_msgs.msg import GoalStatus
 
 class NavigatorTest(Node):
     
